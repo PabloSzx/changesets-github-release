@@ -1,22 +1,40 @@
 {
   "name": "changesets-github-release",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "exit 0"
+  "keywords": [
+    "changesets"
+  ],
+  "homepage": "https://github.com/PabloSzx/changesets-github-release#readme",
+  "bugs": {
+    "url": "https://github.com/PabloSzx/changesets-github-release/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PabloSzx/changesets-github-release.git"
   },
-  "keywords": [
-    "changesets"
-  ],
-  "author": "PabloSzx <pablosaez1995@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/PabloSzx/changesets-github-release/issues"
+  "author": "PabloSzx <pablosaez1995@gmail.com>",
+  "main": "dist/index.js",
+  "bin": {
+    "gh-release": "dist/index.js"
   },
-  "homepage": "https://github.com/PabloSzx/changesets-github-release#readme"
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "tsup --clean src/index.ts src/github-api.ts",
+    "postpublish": "node dist/index.js --repo=PabloSzx/changesets-github-release"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.0",
+    "commander": "^7.2.0",
+    "dotenv": "^9.0.2",
+    "github-release-cli": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.3.0",
+    "tsup": "^4.11.0",
+    "typescript": "^4.2.4"
+  }
 }
