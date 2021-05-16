@@ -1,0 +1,22 @@
+{
+  "name": "changesets-github-release",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PabloSzx/changesets-github-release.git"
+  },
+  "keywords": [
+    "changesets"
+  ],
+  "author": "PabloSzx <pablosaez1995@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PabloSzx/changesets-github-release/issues"
+  },
+  "homepage": "https://github.com/PabloSzx/changesets-github-release#readme"
+}
