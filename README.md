@@ -1,6 +1,6 @@
 # changesets-github-release
 
-Automatize publishing GitHub releases after every [changeset](https://github.com/atlassian/changesets) publish
+Automatize publishing GitHub releases after every [changesets](https://github.com/atlassian/changesets) publish
 
 ## Installation
 
