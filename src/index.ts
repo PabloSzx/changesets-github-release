@@ -25,20 +25,27 @@ program
   .version(require(resolve(__dirname, "../package.json")).version)
   .description("Changesets GitHub Release");
 
+const packageJsonRepoField = existsSync(resolve(process.cwd(), "package.json"))
+  ? (
+      JSON.parse(
+        readFileSync(resolve(process.cwd(), "package.json"), {
+          encoding: "utf-8",
+        })
+      ) as { repository?: { url?: string } | string }
+    )?.repository
+  : undefined;
+
+function cleanRepoUrl(repoUrl: string | undefined) {
+  if (typeof repoUrl !== "string") return;
+
+  return repoUrl.replace("git+", "").replace(".git", "").replace("https://github.com/", "");
+}
+
 let repo: string | undefined =
   process.env.GITHUB_REPO ||
-  (existsSync(resolve(process.cwd(), "package.json"))
-    ? (
-        JSON.parse(
-          readFileSync(resolve(process.cwd(), "package.json"), {
-            encoding: "utf-8",
-          })
-        ) as { repository?: { url?: string } }
-      )?.repository?.url
-        ?.replace("git+", "")
-        ?.replace(".git", "")
-        ?.replace("https://github.com/", "")
-    : undefined);
+  (typeof packageJsonRepoField === "string"
+    ? cleanRepoUrl(packageJsonRepoField)
+    : cleanRepoUrl(packageJsonRepoField?.url));
 
 program[repo ? "option" : "requiredOption"](
   "--repo <github-repo>",
