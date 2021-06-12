@@ -22,9 +22,23 @@ npm install -D changesets-github-release
 
 ## Usage
 
-First it assumes the presence of the `GITHUB_TOKEN` environment variable (you also can create a local .env in the same folder of the package including it). 
+First it assumes the presence of the `GITHUB_TOKEN` environment variable (you also can create a local .env in the same folder of the package including it).
 
 In your `package.json` add a `postpublish` scripts as it follows:
+
+```json
+{
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/repo-owner/repo-name"
+  },
+  "scripts": {
+    "postpublish": "gh-release"
+  }
+}
+```
+
+You also can specify the target GitHub repository using the "--repo" argument:
 
 ```json
 {
@@ -34,15 +48,13 @@ In your `package.json` add a `postpublish` scripts as it follows:
 }
 ```
 
-You can also specify the target GitHub repository using the `GITHUB_REPO` environment variable
+You also can specify the target GitHub repository using the `GITHUB_REPO` environment variable
 
 > .env
 ```env
 GITHUB_TOKEN=XXXXXX
 GITHUB_REPO=repo-owner/repo-name
 ```
-
-And you will be able to clean the script:
 
 ```json
 {

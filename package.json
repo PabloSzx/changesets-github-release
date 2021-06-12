@@ -1,6 +1,6 @@
 {
   "name": "changesets-github-release",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "keywords": [
     "changesets"
@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "prepare": "tsup --clean src/index.ts src/github-api.ts",
-    "postpublish": "node dist/index.js --repo=PabloSzx/changesets-github-release"
+    "postpublish": "node dist/index.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",

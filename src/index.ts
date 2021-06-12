@@ -25,7 +25,20 @@ program
   .version(require(resolve(__dirname, "../package.json")).version)
   .description("Changesets GitHub Release");
 
-let repo: string | undefined = process.env.GITHUB_REPO;
+let repo: string | undefined =
+  process.env.GITHUB_REPO ||
+  (existsSync(resolve(process.cwd(), "package.json"))
+    ? (
+        JSON.parse(
+          readFileSync(resolve(process.cwd(), "package.json"), {
+            encoding: "utf-8",
+          })
+        ) as { repository?: { url?: string } }
+      )?.repository?.url
+        ?.replace("git+", "")
+        ?.replace(".git", "")
+        ?.replace("https://github.com/", "")
+    : undefined);
 
 program[repo ? "option" : "requiredOption"](
   "--repo <github-repo>",
@@ -37,9 +50,9 @@ program.parse(process.argv);
 repo = program.opts().repo || repo;
 
 if (typeof repo !== "string") {
-  console.error("Target repository not specified");
+  console.error("[GitHub Release] Target repository not specified");
 
-  process.exit(1);
+  process.exit(0);
 }
 
 let [owner, repoName] = repo.split("/").map((v) => v.trim());
