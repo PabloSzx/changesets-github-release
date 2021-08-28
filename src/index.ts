@@ -47,10 +47,7 @@ let repo: string | undefined =
     ? cleanRepoUrl(packageJsonRepoField)
     : cleanRepoUrl(packageJsonRepoField?.url));
 
-program[repo ? "option" : "requiredOption"](
-  "--repo <github-repo>",
-  "Target repo, it should have the format: 'owner/repo-name'"
-);
+program.option("--repo <github-repo>", "Target repo, it should have the format: 'owner/repo-name'");
 
 program.parse(process.argv);
 
