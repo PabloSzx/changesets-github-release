@@ -1,6 +1,10 @@
 # changesets-github-release
 
-# 0.0.4
+## 0.1.0
+
+Update dependencies and bundle
+
+## 0.0.4
 
 Gracefully fail if no repo is specified
 
